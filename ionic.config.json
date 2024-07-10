@@ -1,0 +1,7 @@
+{
+  "name": "auth-role-based",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
