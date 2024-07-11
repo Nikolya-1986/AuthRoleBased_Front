@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollY="false">
+  <ion-card>
+    <ion-card-content>
+      <form
+        (ngSubmit)="login()" 
+        [formGroup]="loginForm"
+        >
+        <ion-item>
+          <ion-label position="stacked">
+            Your Email
+          </ion-label>
+          <ion-input
+            type="email"
+            inputmode="email"
+            placeholder="Email"
+            formControlName="email"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(loginForm.controls['email'].dirty || loginForm.controls['email'].touched) && loginForm.controls['email'].errors"
+            >
+            Please insert your email
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Password
+          </ion-label>
+          <ion-input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(loginForm.controls['password'].dirty || loginForm.controls['password'].touched) && loginForm.controls['password'].errors"
+            >
+            Please insert your password
+          </ion-note>
+        </ion-item>
+        <ion-button
+          type="submit"
+          expand="block"
+          strong="true"
+          [disabled]="!loginForm.valid"
+          >
+          Sign in
+        </ion-button>
+
+        <div class="ion-margin-top">
+          <ion-button type="button" expand="block" color="primary" fill="outline" routerLink="register">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            Create Account
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

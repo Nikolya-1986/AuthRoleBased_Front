@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./pages/authentication/components/login/login.page').then( m => m.LoginPage)
   },
   {
     path: '',
@@ -11,3 +11,4 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 ];
+// https://devdactic.com/login-ionic-2
