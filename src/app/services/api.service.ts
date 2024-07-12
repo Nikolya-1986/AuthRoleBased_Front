@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -14,9 +14,10 @@ export class ApiService {
   ) { }
 
   postRequest<T>(pathToFile: string, data: T): Observable<T> {
-    console.log({pathToFile});
-    console.log(data)
-    return <Observable<T>> this.httpClient.post(`${environment.baseUrl}${pathToFile}`, data, this.httpHeader);
+    return <Observable<T>> this.httpClient.post(`${environment.baseUrl}${pathToFile}`, data, this.httpHeader)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.errorsBackend(error))
+      )
   };
 
   private httpHeader = {
@@ -26,16 +27,16 @@ export class ApiService {
       'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization',
       'Access-Control-Allow-Methods': 'PUT, GET, HEAD, POST, DELETE, OPTIONS',
     }),
-};
+  };
 
   private errorsBackend(errorHttp: HttpErrorResponse): Observable<any> {
     let message = '';
     if(errorHttp.error instanceof ErrorEvent) {
-        message = errorHttp.error.message;
+      message = errorHttp.error.message;
     }else {
-        message = `Error Ccode: ${errorHttp.status}\nMessage: ${errorHttp.message}`;
+      message = `Error Ccode: ${errorHttp.status}\nMessage: ${errorHttp.message}`;
     };
-    console.log("Error:", errorHttp);
+    console.log("Error:", message);
     return throwError(errorHttp);
-};
+  };
 }
