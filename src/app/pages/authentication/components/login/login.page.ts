@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { IonContent, IonHeader, IonTitle, IonToolbar,IonCard, IonCardContent, IonItem, IonLabel, IonInput, IonNote, IonIcon, IonButton } from '@ionic/angular/standalone';
 
 import { AuthenticationService } from '../../services/authentication.service';
-import { ILogin, ILoginForm } from '../../interfaces/login.interface';
+import { ILogin, ILoginDto, ILoginForm } from '../../interfaces/login.interface';
 
 
 @Component({
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
 
   login(): void {
     const form: ILogin = this.loginForm.getRawValue();
-    this.authenticationService.login(form).pipe().subscribe((res) => console.log(res))
+    this.authenticationService.login(form).pipe().subscribe((res: ILoginDto) => console.log(res))
   }
 
   private initializeLoginForm(): void {
