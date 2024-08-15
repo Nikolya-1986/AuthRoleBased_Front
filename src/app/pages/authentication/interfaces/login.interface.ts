@@ -1,6 +1,6 @@
 import { FormControl } from "@angular/forms";
 import { ITokenPair } from "./token.interface";
-import { IApiDto } from "./api.interface";
+import { IResponseDto } from "./response.interface";
 
 export interface ILoginForm {
     email: FormControl<string>,
@@ -13,7 +13,7 @@ export interface ILogin {
     password: string,
 }
 
-export interface ILoginDto extends IApiDto<IUserMainInfo>, ILogin, ITokenPair {
+export interface ILoginDto extends IResponseDto<IUserMainInfo>, ILogin, ITokenPair {
     
 }
 

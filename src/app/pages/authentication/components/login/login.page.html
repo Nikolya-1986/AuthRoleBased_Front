@@ -54,14 +54,12 @@
           >
           Sign in
         </ion-button>
-
-        <div class="ion-margin-top">
-          <ion-button type="button" expand="block" color="primary" fill="outline" routerLink="register">
-            <ion-icon name="person-outline" slot="start"></ion-icon>
-            Create Account
-          </ion-button>
-        </div>
       </form>
+      <div class="ion-margin-top">
+        <ion-button type="button" expand="block" color="primary" fill="outline" [routerLink]="['/register']">
+          Create Account
+        </ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

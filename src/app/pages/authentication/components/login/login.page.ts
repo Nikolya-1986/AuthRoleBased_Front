@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar,IonCard, IonCardContent, IonItem, IonLabel, IonInput, IonNote, IonIcon, IonButton } from '@ionic/angular/standalone';
+import { take } from 'rxjs';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { ILogin, ILoginDto, ILoginForm } from '../../interfaces/login.interface';
-
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,10 @@ import { ILogin, ILoginDto, ILoginForm } from '../../interfaces/login.interface'
     IonIcon,
     IonButton,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    RouterLink,
+    RouterOutlet
   ]
 })
 export class LoginPage implements OnInit {
@@ -37,6 +41,7 @@ export class LoginPage implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -45,7 +50,11 @@ export class LoginPage implements OnInit {
 
   login(): void {
     const form: ILogin = this.loginForm.getRawValue();
-    this.authenticationService.login(form).pipe().subscribe((res: ILoginDto) => console.log(res))
+    this.authenticationService.login(form)
+    .pipe(
+      take(1),
+    )
+    .subscribe((res: ILoginDto) => console.log(res))
   }
 
   private initializeLoginForm(): void {
