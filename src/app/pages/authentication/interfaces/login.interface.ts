@@ -22,6 +22,5 @@ interface IUserMainInfo {
     firstName: string,
     lastName: string,
     userName: string,
-    email: string,
-    role: string,
+    role: string[],
 }

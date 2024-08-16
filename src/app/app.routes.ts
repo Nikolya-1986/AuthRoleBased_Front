@@ -15,10 +15,10 @@ export const routes: Routes = [
   {
     path: 'user',
     loadComponent: () => import('./pages/user/user.page').then( m => m.UserPage),
-    // canActivate: [AuthGuard],
-    // data: {
-    //   roles: [Role.User],
-    // }
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.User],
+    }
   },
 ];
 // https://devdactic.com/login-ionic-2

@@ -6,7 +6,7 @@ import { take } from 'rxjs';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { ILogin, ILoginDto, ILoginForm } from '../../interfaces/login.interface';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
