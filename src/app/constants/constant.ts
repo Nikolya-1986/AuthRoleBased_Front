@@ -3,7 +3,7 @@ import { Role } from "../models/enums/role.enum";
 /**
  * Константа, путь к странице
  */
-export const PathToPage = {
+export const PATH_TO_PAGE = {
     Login: 'login',
 };
 

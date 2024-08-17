@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
     .pipe(
       take(1),
     )
-    .subscribe((res: ILoginDto) => console.log(res))
+    .subscribe((res: ILoginDto) => {})
   }
 
   private initializeLoginForm(): void {
