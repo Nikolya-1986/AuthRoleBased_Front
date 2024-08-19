@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { LOGIN_DATA, PATH_TO_PAGE } from '../../../constants/constant';
 import { ApiService } from '../../../services/api.service';
-import { ILogin, ILoginDto } from '../interfaces/login.interface';
+import { ILogin, ILoginDto, IRegisterDto } from '../interfaces/login.interface';
 import { Role } from '../../../models/enums/role.enum';
 import { StorageService } from '../../../services/storage.service';
 
@@ -30,6 +30,19 @@ export class AuthenticationService {
           const currentPage = this.accessToPageByRole(response.data.role) as string;
           this.redirectTo(currentPage);
           const loginData = this.storageService.setData(LOGIN_DATA, response) as Promise<ILoginDto>;
+          return from(loginData);
+        })
+      )
+  }
+
+  register(data: ILogin | any): Observable<IRegisterDto> {
+    return <Observable<IRegisterDto>><unknown>this.apiService.postRequest(PATH_TO_PAGE['Register'], data)
+      .pipe(
+        map((response: IRegisterDto) => {
+          if (!response) return [];
+          this.isAuthenticated.next(response.isSucceed);
+          this.redirectTo(PATH_TO_PAGE['User']);
+          const loginData = this.storageService.setData(LOGIN_DATA, response) as Promise<IRegisterDto>;
           return from(loginData);
         })
       )

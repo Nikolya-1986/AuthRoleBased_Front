@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/authentication/components/login/login.page').then( m => m.LoginPage)
   },
   {
+    path: 'register',
+    loadComponent: () => import('./pages/authentication/components/register/register.page').then( m => m.RegisterPage)
+  },
+  {
     path: 'user',
     loadComponent: () => import('./pages/home/components/user/user.page').then( m => m.UserPage),
     canActivate: [AuthGuard],
@@ -37,6 +41,4 @@ export const routes: Routes = [
       roles: [Role.User, Role.Admin, Role.Owner],
     }
   },
-
 ];
-// https://devdactic.com/login-ionic-2

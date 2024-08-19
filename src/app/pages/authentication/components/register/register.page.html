@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollY="false">
+  <ion-card>
+    <ion-card-content>
+      <form
+        (ngSubmit)="register()" 
+        [formGroup]="registerForm"
+        >
+        <ion-item>
+          <ion-label position="stacked">
+            Your First name
+          </ion-label>
+          <ion-input
+            type="name"
+            inputmode="name"
+            placeholder="Fist name"
+            formControlName="firstName"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) && registerForm.controls['firstName'].errors"
+            >
+            Please insert your First name
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Your Last name
+          </ion-label>
+          <ion-input
+            type="name"
+            inputmode="name"
+            placeholder="Last name"
+            formControlName="lastName"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) && registerForm.controls['lastName'].errors"
+            >
+            Please insert your Last name
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Your User name
+          </ion-label>
+          <ion-input
+            type="name"
+            inputmode="name"
+            placeholder="User name"
+            formControlName="userName"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) && registerForm.controls['userName'].errors"
+            >
+            Please insert your User name
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Your Email
+          </ion-label>
+          <ion-input
+            type="email"
+            inputmode="email"
+            placeholder="Email"
+            formControlName="email"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(registerForm.controls['email'].dirty || registerForm.controls['email'].touched) && registerForm.controls['email'].errors"
+            >
+            Please insert your email
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Password
+          </ion-label>
+          <ion-input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(registerForm.controls['password'].dirty || registerForm.controls['password'].touched) && registerForm.controls['password'].errors"
+            >
+            Please insert your password
+          </ion-note>
+        </ion-item>
+        <ion-button
+          type="submit"
+          expand="block"
+          strong="true"
+          [disabled]="!registerForm.valid"
+          >
+          Sign up
+        </ion-button>
+      </form>
+      <div class="ion-margin-top">
+        <ion-button type="button" expand="block" color="primary" fill="outline" [routerLink]="['/login']">
+          Enter Account
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
