@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
     ) {}
 
 	canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		console.log(this.authenticationService.isAuthenticated.value)
-		if (!this.authenticationService.isAuthenticated.value) {
+		if (localStorage.getItem('accessToken') === null) {
 			this.authenticationService.redirectTo('login');
 			return false;
 		}

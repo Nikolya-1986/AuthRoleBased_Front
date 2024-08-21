@@ -4,16 +4,22 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { tokensInterseptor } from './services/interseptors/tokens.interseptor';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: ErrorHandler, useClass: ErrorHandler },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideIonicAngular(),
     importProvidersFrom(IonicStorageModule.forRoot()),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([tokensInterseptor])
+    ),
+    JwtHelperService
   ]
 };

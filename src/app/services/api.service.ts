@@ -13,7 +13,7 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  postRequest<T>(pathToFile: string, data: T): Observable<T> {
+  postRequest<T, E>(pathToFile: string, data: E): Observable<T> {
     return <Observable<T>> this.httpClient.post(`${environment.baseUrl}${pathToFile}`, data, this.httpHeader)
       .pipe(
         catchError((error: HttpErrorResponse) => this.errorsBackend(error))

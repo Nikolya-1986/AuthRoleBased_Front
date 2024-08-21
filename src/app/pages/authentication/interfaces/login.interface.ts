@@ -27,13 +27,16 @@ export interface ILogin {
     password: string,
 }
 
-export interface ILoginDto extends IResponseDto<IUserMainInfo>, ILogin, ITokenPair { }
+export interface ILoginDto extends IResponseDto<IUserMainInfo> { }
 
 export interface IRegisterDto extends ILoginDto { }
-interface IUserMainInfo {
+
+export interface IUpdateTokens extends IResponseDto<ITokenPair> { }
+interface IUserMainInfo extends ILogin {
     id: string,
     firstName: string,
     lastName: string,
     userName: string,
     role: string[],
+    tokens: ITokenPair,
 }

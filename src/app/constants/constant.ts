@@ -8,7 +8,8 @@ export const PATH_TO_PAGE = {
     Login: 'login',
     User: 'user',
     Admin: 'admin',
-    Owner: 'owner'
+    Owner: 'owner',
+    UpdateTokens: 'updateTokens'
 };
 
 /**
