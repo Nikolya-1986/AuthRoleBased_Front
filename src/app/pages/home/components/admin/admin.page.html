@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Page for admin
+    </ion-title>
+    <span (click)="logout()">
+      Logout
+    </span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollY="false">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        firstName: {{ admin()?.data?.firstName }}
+      </ion-item>
+      <ion-item>
+        lastName: {{ admin()?.data?.lastName }}
+      </ion-item>
+      <ion-item>
+        roles: {{ admin()?.data?.role }}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
